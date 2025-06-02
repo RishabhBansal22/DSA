@@ -1,0 +1,4 @@
+stack = last in first out, think of undo, LIFO
+queue = first in first out, FIFO, first come first serve
+enque = adding to queue to the end
+dequeue = removing from queue from front of queue
