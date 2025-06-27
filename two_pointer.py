@@ -19,21 +19,87 @@ def two_sum(arr,n):
 # print(two_sum(arr,n))
 
 
-arr = [2,3,1,4,5,6,7,8,9]
+arr = [1, 1, 2, 3, 3]
+slow = 0
+for fast in range(1, len(arr)):
+    if arr[fast] != arr[slow]:
+        slow += 1
+        arr[slow] = arr[fast]
 
-sum_arr = []
+# print(arr)
 
-for i in range(len(arr)):
 
-    if len(sum_arr)==0:
-        sum_arr.append(arr[i])
-    else:
-        sum_arr.append(arr[i]+sum_arr[i-1])
+#reverse the elements of array in place
+# Input: [1, 2, 3, 4, 5]
+# Output: [5, 4, 3, 2, 1]
 
-q = [1,3]
-re = sum_arr[3]-sum_arr[q[0]-1]
-print(re)
+def reverse(arr):
+    left = 0
+    right = len(arr)-1
+    while left<right:
+        arr[left], arr[right] = arr[right], arr[left]
+        left+=1
+        right-=1
+    
+    return arr
 
+# print(reverse([1,2,3,4,5]))
+
+#check if array reads same forward and backward
+# Input: [1, 2, 3, 2, 1]
+# Output: True
+
+def palindrome(arr:list[int]) -> bool:
+    "check if array reads same forward and backward"
+
+    left = 0
+    right = len(arr)-1
+    is_palindrome = None
+
+    while left<right:
+
+        if arr[left] == arr[right]:
+            is_palindrome = True
+            left+=1
+            right-=1
+        else:
+            return False
+        
+    return is_palindrome
+
+# print(palindrome([1, 2, 3, 2, 2]))
+
+#: Given an array and a value, remove all instances of that value in-place and return the new length.
+# Input: nums = [3,2,2,3], val = 3
+# Output: 2 → nums = [2,2]
+
+def remove_val(arr:list, val):
+    i = 0
+    for j in range(len(arr)):
+        if arr[j] != val:
+            arr[i] = arr[j]
+            i+=1
+    return i, arr
+
+# print(remove_val([3,2,2,3],3))
+      
+
+# **Problem**: Given a sorted array, remove duplicates in-place.
+
+# ```python
+# Input: [1,1,2,2,3,4,4]
+# Output: 4 → [1,2,3,4]
+# ```
+
+def remove_duplicate(arr):
+    i = 0
+    for j in range(1,len(arr)):
+        if arr[j] != arr[j-1]:
+           i += 1
+           arr[i] = arr[j]
+    return i+1, arr
+
+print(remove_duplicate([1,1,2,2,3,4,4]))
 
 
 
