@@ -64,3 +64,96 @@ def appers_once(arr):
 
 # arr = [1,1,2,2,3,4,4]
 # print(appers_once(arr))
+
+
+#check if an array is sorted
+
+def is_sorted_mine(arr:list) -> bool:
+    "returns true if the array is sorted"
+    
+    if not arr:
+        return True
+
+    sorted = True
+
+    for i in range(len(arr)):
+        if i == (len(arr)-1):
+            if arr[i] < arr[i-1]:
+                sorted = False
+                return sorted
+            
+        elif arr[i] > arr[i+1]:
+            sorted = False
+            return sorted
+
+    return sorted
+
+def is_sorted(arr: list) -> bool:
+    "Returns True if the array is sorted in non-decreasing order"
+    if not arr:
+        return True  # Empty array is considered sorted
+    for i in range(len(arr) - 1):
+        if arr[i] > arr[i + 1]:
+            return False
+    return True
+
+
+# print(is_sorted([1,2,3,4,5,4]))
+
+def merge_sort(nums1:list,m:int,nums2:list,n:int):
+    if n == 0:
+        return
+    
+    nums2_last = n-1
+    for i in range(((m+n)-1),m-1,-1):
+        nums1[i] = nums2[nums2_last]
+        nums2_last-=1
+
+    return nums1
+
+
+# print(merge_sort(
+#     nums1=[1,2,3,0,0,0],
+#     m=3,
+#     nums2=[2,5,6],
+#     n = 3
+#     ))
+
+
+#return second largest
+def second_largest(arr: list[int]) -> str:
+    "returns the largest and second largest element in arr"
+    if len(arr) < 2:
+        return "Array must have at least two elements"
+
+    largest = second_largest = float('-inf')
+    
+    for num in arr:
+        if num > largest:
+            second_largest = largest
+            largest = num
+        elif largest > num > second_largest:
+            second_largest = num
+
+    if second_largest == float('-inf'):
+        return "No second largest element (all elements may be equal)"
+    return f"largest = {largest}\nsecond largest = {second_largest}"
+
+
+# print(second_largest([4,2,3,6,1,7,9]))
+
+def increment_array(arr):
+    "Increments the array as if it represents a number"
+    n = len(arr) - 1
+    for i in range(n, -1, -1):
+        if arr[i] != 9:
+            arr[i] += 1
+            return arr
+        else:
+            arr[i] = 0
+    return [1] + arr
+
+
+arr = [1,8,9,9]
+result = increment_array(arr)
+print(result)

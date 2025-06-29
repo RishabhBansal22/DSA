@@ -1,14 +1,5 @@
-arr = [1, 2, 3, 3.5,4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+arr = [1, 1, 2,4, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 n = 13
-#return index of n in arr
-
-#linear search
-# for i in range(len(arr)):
-#     if arr[i]==n:
-#         # print(i)
-
-
-#binary search
 
 def binary_search(arr,n):
     left = 0
@@ -25,7 +16,21 @@ def binary_search(arr,n):
             right = mid - 1
     return -1
 
-print(binary_search(arr,n))
+# print(binary_search(arr,n))
 
+def remove_duplicate(arr):
+    write = 0
+    read = 1
+    while read<len(arr):
+        if arr[read] != arr[write]:
+            write +=1
+            arr[write] = arr[read]
+        
+        read+=1
+    
+    return write+1, arr
+
+arr = [1,1,2,2,3,3]
+print(remove_duplicate(arr))
 
 
